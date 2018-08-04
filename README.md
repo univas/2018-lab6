@@ -11,6 +11,7 @@ Pré-requisitos:
         npm install -g @angular/cli
  
 Comandos:
+
  1 - Criar um novo projeto:
 
         ng new nomeDoProjeto
