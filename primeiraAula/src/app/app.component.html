@@ -5,9 +5,16 @@
 </div>
 
 <ul>
-  <li>{{ car.brand }}</li>
-  <li>{{ car.name }}</li>
-  <li>{{ car.color }}</li>
-  <li>{{ car.year }}</li>
-  <li>{{ car.price }}</li>
+  <li>{{ myCar.brand }}</li>
+  <li>{{ myCar.name }}</li>
+  <li>{{ myCar.color }}</li>
+  <li>{{ myCar.year }}</li>
+  <li>{{ myCar.price }}</li>
+</ul>
+
+<ul>
+  <li *ngFor="let car of cars">
+    {{ car.brand }} - {{ car.name }} - {{ car.color }} - 
+    {{ car.price }} - {{ car.year}}
+  </li>
 </ul>
