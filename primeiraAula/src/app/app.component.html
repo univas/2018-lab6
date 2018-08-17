@@ -4,13 +4,24 @@
   </h1>  
 </div>
 
-<ul>
+Nome: <input type="text" [(ngModel)]="studentName">
+<p>{{ studentName }}</p>
+
+<ul *ngIf="myCar.brand">
   <li>{{ myCar.brand }}</li>
   <li>{{ myCar.name }}</li>
   <li>{{ myCar.color }}</li>
   <li>{{ myCar.year }}</li>
   <li>{{ myCar.price }}</li>
 </ul>
+
+<h1>Novo Carro:</h1>
+<p>Brand: <input type="text" [(ngModel)]="myCar.brand"></p>
+<p>Name: <input type="text" [(ngModel)]="myCar.name"></p>
+<p>Color: <input type="text" [(ngModel)]="myCar.color"></p>
+<p>Year: <input type="text" [(ngModel)]="myCar.year"></p>
+<p>Price: <input type="text" [(ngModel)]="myCar.price"></p>
+<input type="button" value="Salvar" (click)="addNewCar()">
 
 <ul>
   <li *ngFor="let car of cars">

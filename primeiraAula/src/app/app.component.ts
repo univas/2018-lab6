@@ -9,6 +9,8 @@ import { Car } from './car';
 export class AppComponent {
   title = 'Alunos';
 
+  studentName = null;
+
   myCar : Car = new Car();
   
   cars : Car[] = [];
@@ -34,6 +36,20 @@ export class AppComponent {
       
       this.cars.push(fakeCar);
     }
+  }
+
+  addNewCar() {
+    //let carTemp = new Car();
+    //carTemp.brand = this.myCar.brand;
+    //carTemp.color = this.myCar.color;
+    //carTemp.name = this.myCar.name;
+    //carTemp.price = this.myCar.price;
+    //carTemp.year = this.myCar.year;
+
+    //this.cars.push(carTemp);
+
+    this.cars.push(this.myCar);
+    this.myCar = new Car();
   }
 
   
