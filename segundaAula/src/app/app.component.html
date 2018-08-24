@@ -1,0 +1,26 @@
+<h1>Campeonato Brasileiro 2018</h1>
+{{ teste }}
+
+<div>
+  Time: <input type="text" [(ngModel)]="newTeam.name">
+</div>
+
+<div>
+  Pontuação: <input type="number" [(ngModel)]="newTeam.points">
+</div>
+
+<p *ngIf="showError" class="error">Preencha todos os campos!</p>
+<input type="button" value="Adicionar" (click)="addNewTeam()">
+
+<table *ngIf="teams.length > 0">
+  <thead>
+    <th>Time</th>
+    <th>Pontuação</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let team of teams">
+      <td>{{ team.name }}</td>
+      <td>{{ team.points }}</td>
+    </tr>
+  </tbody>
+</table>
