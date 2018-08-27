@@ -6,5 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'terceiraAula';
+
+  student = {
+    name: null,
+    cpf: null,
+    birthday: null,
+    weight: null
+  };
+
+  students = [];
+
+  addNewStudent() {
+    let temp = Object.assign({}, this.student);
+    this.students.push(temp);
+  }
+
+
 }
