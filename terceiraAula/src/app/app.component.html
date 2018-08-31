@@ -25,12 +25,12 @@
     {{ stu.name | uppercase }} -
     {{ stu.name | lowercase }}
     <ul>
-      <li>{{ stu.cpf }}</li>
+      <li>{{ stu.cpf | cpf }}</li>
       <li>{{ stu.birthday }}</li>
       <li>{{ stu.birthday | date:"shortDate" }}</li>
       <li>{{ stu.birthday | date:"mediumDate" }}</li>
       <li>{{ stu.birthday | date:"longDate" }}</li>
-      <li>{{ stu.birthday | date:"fullDate" }}</li>
+      <li>{{ stu.birthday | date:"fullDate" | uppercase }}</li>
       <li>{{ stu.birthday | date:"dd-MM-yyyy" }}</li>
       <li>{{ stu.weight }}</li>
       <li>{{ stu.weight | number:"3.2-4" }}</li>

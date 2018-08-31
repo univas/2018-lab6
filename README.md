@@ -19,3 +19,7 @@ Comandos:
  2 - Executar o projeto:
  
         ng serve -o
+
+ 3 - Criar um novo pipe:
+ 
+		ng generate pipe nomeDoPipe
