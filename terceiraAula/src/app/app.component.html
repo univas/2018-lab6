@@ -16,24 +16,18 @@
   Peso: <input type="number" [(ngModel)]="student.weight">
 </div>
 
+<div>
+  Telefone: <input type="text" [(ngModel)]="student.telephone">
+</div>
+
 <input type="button" value="Add" (click)="addNewStudent()"> 
 
 
 <h2>Alunos Cadastrados:</h2>
 <ul>
-  <li *ngFor="let stu of students">
-    {{ stu.name | uppercase }} -
-    {{ stu.name | lowercase }}
-    <ul>
-      <li>{{ stu.cpf | cpf }}</li>
-      <li>{{ stu.birthday }}</li>
-      <li>{{ stu.birthday | date:"shortDate" }}</li>
-      <li>{{ stu.birthday | date:"mediumDate" }}</li>
-      <li>{{ stu.birthday | date:"longDate" }}</li>
-      <li>{{ stu.birthday | date:"fullDate" | uppercase }}</li>
-      <li>{{ stu.birthday | date:"dd-MM-yyyy" }}</li>
-      <li>{{ stu.weight }}</li>
-      <li>{{ stu.weight | number:"3.2-4" }}</li>
-    </ul>
+  <li *ngFor="let stu of students" (click)="setSelectedStudent(stu)">
+    {{ stu.name | uppercase }}
   </li>
 </ul>
+
+<app-student-detail [studentDetail]="currentStudent"></app-student-detail>

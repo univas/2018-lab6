@@ -23,3 +23,9 @@ Comandos:
  3 - Criar um novo pipe:
  
 		ng generate pipe nomeDoPipe
+		
+ 4 - Criar um novo componente:
+ 
+		ng generate component nomeDoComponent
+		
+		

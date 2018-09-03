@@ -11,14 +11,21 @@ export class AppComponent {
     name: null,
     cpf: null,
     birthday: null,
-    weight: null
+    weight: null,
+    telephone: null
   };
 
   students = [];
 
+  currentStudent : any;
+
   addNewStudent() {
     let temp = Object.assign({}, this.student);
     this.students.push(temp);
+  }
+
+  setSelectedStudent(stu) {
+    this.currentStudent = stu;
   }
 
 

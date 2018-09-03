@@ -1,0 +1,14 @@
+<ul *ngIf="studentDetail">
+  <li>{{ studentDetail.cpf | cpf }}</li>
+  <li>{{ studentDetail.birthday }}</li>
+  <li>{{ studentDetail.birthday | date:"shortDate" }}</li>
+  <li>{{ studentDetail.birthday | date:"mediumDate" }}</li>
+  <li>{{ studentDetail.birthday | date:"longDate" }}</li>
+  <li>{{ studentDetail.birthday | date:"fullDate" | uppercase }}</li>
+  <li>{{ studentDetail.birthday | date:"dd-MM-yyyy" }}</li>
+  <li>{{ studentDetail.weight }}</li>
+  <li>{{ studentDetail.weight | number:"3.2-4" }}</li>
+  <li>{{ studentDetail.telephone | telephone }}</li>
+  <li>{{ studentDetail.telephone | telephone : true }}</li>
+  <li>{{ studentDetail.telephone | telephone : false }}</li>
+</ul>

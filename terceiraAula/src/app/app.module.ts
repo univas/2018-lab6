@@ -4,11 +4,15 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CpfPipe } from './cpf.pipe';
+import { TelephonePipe } from './telephone.pipe';
+import { StudentDetailComponent } from './student-detail/student-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CpfPipe
+    CpfPipe,
+    TelephonePipe,
+    StudentDetailComponent
   ],
   imports: [
     BrowserModule,
