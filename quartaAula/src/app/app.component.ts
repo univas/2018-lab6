@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { City } from './city';
+import { CityService } from './city.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,14 @@ export class AppComponent {
   
   newCity : City = new City();
 
-  cities : City[] = [];
+  cities : City[];
+
+  constructor(private cityService : CityService) {
+    this.cities = cityService.getAll();
+  }
 
   saveNewCity() {
-    this.cities.push(this.newCity);
+    this.cityService.addNewCity(this.newCity);
     this.newCity = new City();
   }
 }
