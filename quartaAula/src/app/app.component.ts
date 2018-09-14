@@ -8,17 +8,43 @@ import { CityService } from './city.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
-  newCity : City = new City();
 
-  cities : City[];
+  newCity: City = new City();
 
-  constructor(private cityService : CityService) {
+  cities: City[];
+
+  constructor(private cityService: CityService) {
     this.cities = cityService.getAll();
   }
 
   saveNewCity() {
-    this.cityService.addNewCity(this.newCity);
-    this.newCity = new City();
+    if (this.validateFields()) {
+      if (this.newCity.id) {
+        this.cityService.updateCity(this.newCity);
+  
+      } else {
+        this.newCity.id = (new Date()).getTime();
+        this.cityService.addNewCity(this.newCity);
+      }
+  
+      this.newCity = new City();
+    }
+  }
+
+  validateFields(): boolean {
+    if (!this.newCity.name || this.newCity.name.trim() === '' ||
+      !this.newCity.state || this.newCity.state.trim() === '') {
+      return false;
+    }
+
+    return true;
+  }
+
+  edit(city: City) {
+    this.newCity = new City(city.id, city.name, city.state);
+  }
+
+  remove(city: City) {
+    this.cityService.deleteCity(city);
   }
 }

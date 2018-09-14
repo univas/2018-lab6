@@ -18,12 +18,15 @@ export class CityService {
     this.cities.push(city);
   }
 
-  deleteCity() {
-
+  deleteCity(city : City) {
+    let index = this.cities.indexOf(city);
+    this.cities.splice(index, 1);
   }
 
-  updateCity() {
-    
+  updateCity(city : City) {
+    let oldCity = this.cities.find(c => c.id === city.id);
+    oldCity.name = city.name;
+    oldCity.state = city.state;
   }
 
 }
