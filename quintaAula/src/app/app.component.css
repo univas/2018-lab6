@@ -1,0 +1,17 @@
+div {
+    margin: 5px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 95%;
+}
+
+th, td {
+    border: 1px solid gray;
+}
+
+td input[type="button"] {
+    width: 100%;
+}
+

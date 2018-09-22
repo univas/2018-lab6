@@ -1,14 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { CpfPipe } from './cpf.pipe';
+import { TelephonePipe } from './telephone.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CpfPipe,
+    TelephonePipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
