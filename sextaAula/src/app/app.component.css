@@ -1,0 +1,17 @@
+h1 {
+    text-align: center;
+    color: blue;
+}
+
+div {
+    margin: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 95%;
+}
+
+th, td {
+    border: 1px solid black;
+}
