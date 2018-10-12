@@ -1,0 +1,43 @@
+<h1>Cadastro de professor</h1>
+
+<div>
+  Nome: <input type="text" [(ngModel)]="newTeacher.name">
+</div>
+
+<div>
+  E-mail: <input type="text" [(ngModel)]="newTeacher.email">
+</div>
+
+<div>
+  Disciplina:
+  <select [(ngModel)]="newTeacher.subject">
+    <option *ngFor="let sub of subjects" [ngValue]="sub">
+      {{ sub.name }}
+    </option>
+  </select>
+</div>
+
+<p *ngIf="showError" class="error">Preencha todos os campos!</p>
+
+<input type="button" value="Salvar" (click)="save()">
+
+<div *ngIf="teachers.length > 0">
+  <h2>Professores salvos:</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+      </tr>
+      <tr *ngFor="let teacher of teachers">
+        <td>{{ teacher.name }}</td>
+        <td>{{ teacher.email }}</td>
+        <td><input type="button" value="Editar" (click)="edit(teacher)"></td>
+        <td><input type="button" value="Excluir" (click)="delete(teacher)"></td>
+      </tr>
+    </thead>
+  </table>
+</div>

@@ -1,0 +1,34 @@
+<h1>Cadastro de disciplina</h1>
+
+<div>
+  Nome: <input type="text" [(ngModel)]="newSubject.name">
+</div>
+
+<div>
+  Curso: <input type="text" [(ngModel)]="newSubject.course">
+</div>
+
+<p *ngIf="showError" class="error">Preencha todos os campos!</p>
+
+<input type="button" value="Salvar" (click)="save()">
+
+<div *ngIf="subjects.length > 0">
+  <h2>Disciplinas salvas:</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Curso</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+      </tr>
+      <tr *ngFor="let subject of subjects">
+        <td>{{ subject.name }}</td>
+        <td>{{ subject.course }}</td>
+        <td><input type="button" value="Editar" (click)="edit(subject)"></td>
+        <td><input type="button" value="Excluir" (click)="delete(subject)"></td>
+      </tr>
+    </thead>
+  </table>
+</div>
