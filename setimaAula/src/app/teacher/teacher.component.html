@@ -29,12 +29,14 @@
       <tr>
         <th>Nome</th>
         <th>E-mail</th>
+        <th>Disciplina</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
       <tr *ngFor="let teacher of teachers">
         <td>{{ teacher.name }}</td>
         <td>{{ teacher.email }}</td>
+        <td>{{ teacher.subject.name }}</td>
         <td><input type="button" value="Editar" (click)="edit(teacher)"></td>
         <td><input type="button" value="Excluir" (click)="delete(teacher)"></td>
       </tr>

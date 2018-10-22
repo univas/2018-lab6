@@ -22,6 +22,7 @@ export class TeacherService {
     let oldTeacher = this.teachers.find(tea => tea.id === teacher.id);
     oldTeacher.name = teacher.name;
     oldTeacher.email = teacher.email;
+    oldTeacher.subject = teacher.subject;
   }
 
   delete(teacher : Teacher) {

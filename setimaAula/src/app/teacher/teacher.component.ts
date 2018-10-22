@@ -54,7 +54,8 @@ export class TeacherComponent implements OnInit {
   }
 
   edit(teacher : Teacher) {
-    this.newTeacher = new Teacher(teacher.id, teacher.name, teacher.email);
+    this.newTeacher = new Teacher(teacher.id, teacher.name, 
+        teacher.email, teacher.subject);
   }
 
   delete(teacher : Teacher) {
