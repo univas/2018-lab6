@@ -9,14 +9,19 @@ import { SubjectService } from '../subject.service';
 })
 export class SubjectComponent implements OnInit {
 
-  subjects : Subject[];  
+  subjects : Subject[];
+
+  subjectsFiltered : Subject[];
 
   newSubject : Subject;
 
   showError : boolean = false;
 
+  filter : string;
+
   constructor(private subjectService : SubjectService) {
     this.subjects = subjectService.getAll();
+    this.subjectsFiltered = this.subjects;
     this.newSubject = new Subject();
   }
 
@@ -53,6 +58,18 @@ export class SubjectComponent implements OnInit {
 
   delete(subject : Subject) {
     this.subjectService.delete(subject);
+  }
+
+  search() {
+    if (this.filter && this.filter.trim() !== '') {
+      let f = this.filter.toLowerCase();
+
+      this.subjects = this.subjectsFiltered.filter(item => 
+          item.name.toLowerCase().startsWith(f) || item.course.toLowerCase().startsWith(f)
+      );
+    } else {
+      this.subjects = this.subjectsFiltered;
+    }
   }
 
 }

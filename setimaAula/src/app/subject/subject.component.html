@@ -15,6 +15,9 @@
 <div *ngIf="subjects.length > 0">
   <h2>Disciplinas salvas:</h2>
   
+  <label>Busca:</label><input type="text" [(ngModel)]="filter">
+  <input type="button" value="Buscar" (click)="search()">
+
   <table>
     <thead>
       <tr>
