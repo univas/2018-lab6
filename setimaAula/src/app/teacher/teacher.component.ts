@@ -13,16 +13,21 @@ export class TeacherComponent implements OnInit {
 
   teachers : Teacher[];
 
+  teachersFiltered : Teacher[];
+
   subjects : Subject[];
 
   newTeacher : Teacher;
 
   showError : boolean = false;
 
+  filter : string;
+
   constructor(private teacherService : TeacherService,
               private subjectService : SubjectService) {
     this.subjects = subjectService.getAll();
     this.teachers = teacherService.getAll();
+    this.teachersFiltered = this.teachers;
     this.newTeacher = new Teacher();
   }
 
@@ -60,6 +65,19 @@ export class TeacherComponent implements OnInit {
 
   delete(teacher : Teacher) {
     this.teacherService.delete(teacher);
+  }
+
+  search() {
+    if (this.filter && this.filter.trim() !== '') {
+      let f = this.filter.toLowerCase();
+
+      this.teachers = this.teachersFiltered.filter(item => 
+          item.name.toLowerCase().startsWith(f) || item.email.toLowerCase().startsWith(f)
+          || item.subject.name.toLowerCase().startsWith(f)
+      );
+    } else {
+      this.teachers = this.teachersFiltered;
+    }
   }
 
 }

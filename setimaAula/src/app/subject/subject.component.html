@@ -5,8 +5,14 @@
 </div>
 
 <div>
-  Curso: <input type="text" [(ngModel)]="newSubject.course">
-</div>
+    Curso:
+    <select [(ngModel)]="newSubject.course">
+      <option *ngFor="let course of courses" [ngValue]="course">
+        {{ course.name }}
+      </option>
+    </select>
+  </div>
+  
 
 <p *ngIf="showError" class="error">Preencha todos os campos!</p>
 
@@ -28,7 +34,7 @@
       </tr>
       <tr *ngFor="let subject of subjects">
         <td>{{ subject.name }}</td>
-        <td>{{ subject.course }}</td>
+        <td>{{ subject.course.name }}</td>
         <td><input type="button" value="Editar" (click)="edit(subject)"></td>
         <td><input type="button" value="Excluir" (click)="delete(subject)"></td>
       </tr>

@@ -1,0 +1,37 @@
+<h1>Cadastro de curso</h1>
+
+<div>
+  Nome: <input type="text" [(ngModel)]="newCourse.name">
+</div>
+
+<div>
+  Período: <input type="number" [(ngModel)]="newCourse.period">
+</div>
+
+<p *ngIf="showError" class="error">Preencha todos os campos!</p>
+
+<input type="button" value="Salvar" (click)="save()">
+
+<div *ngIf="courses.length > 0">
+  <h2>Cursos salvos:</h2>
+  
+  <label>Busca:</label><input type="text" [(ngModel)]="filter">
+  <input type="button" value="Buscar" (click)="search()">
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Período</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+      </tr>
+      <tr *ngFor="let course of courses">
+        <td>{{ course.name }}</td>
+        <td>{{ course.period }}</td>
+        <td><input type="button" value="Editar" (click)="edit(course)"></td>
+        <td><input type="button" value="Excluir" (click)="delete(course)"></td>
+      </tr>
+    </thead>
+  </table>
+</div>

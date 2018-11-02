@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from '../subject';
 import { SubjectService } from '../subject.service';
+import { CourseService } from '../course.service';
+import { Course } from '../course';
 
 @Component({
   selector: 'app-subject',
@@ -8,6 +10,8 @@ import { SubjectService } from '../subject.service';
   styleUrls: ['./subject.component.css']
 })
 export class SubjectComponent implements OnInit {
+
+  courses : Course[];
 
   subjects : Subject[];
 
@@ -19,7 +23,8 @@ export class SubjectComponent implements OnInit {
 
   filter : string;
 
-  constructor(private subjectService : SubjectService) {
+  constructor(private subjectService : SubjectService, private courseService : CourseService) {
+    this.courses = this.courseService.getAll();
     this.subjects = subjectService.getAll();
     this.subjectsFiltered = this.subjects;
     this.newSubject = new Subject();
@@ -45,8 +50,7 @@ export class SubjectComponent implements OnInit {
   }
 
   isValidSubject() {
-    if (!this.newSubject.name || this.newSubject.name.trim() === '' ||
-        !this.newSubject.course || this.newSubject.course.trim() === '') {
+    if (!this.newSubject.name || this.newSubject.name.trim() === '' || !this.newSubject.course) {
       return false;
     }
     return true;
@@ -65,7 +69,7 @@ export class SubjectComponent implements OnInit {
       let f = this.filter.toLowerCase();
 
       this.subjects = this.subjectsFiltered.filter(item => 
-          item.name.toLowerCase().startsWith(f) || item.course.toLowerCase().startsWith(f)
+          item.name.toLowerCase().startsWith(f) || item.course.name.toLowerCase().startsWith(f)
       );
     } else {
       this.subjects = this.subjectsFiltered;
