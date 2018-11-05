@@ -1,0 +1,360 @@
+{
+	"id": "4304b649-5a95-4457-923e-f7221ea92bb8",
+	"name": "University",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [],
+	"folders_order": [
+		"45de16e6-c175-4cc3-be29-31d7beb964f7",
+		"1e9605b4-4554-4f00-8be5-78a9dd5a7621",
+		"ea98a069-a5d0-457b-9933-d5cecbfdfbad"
+	],
+	"folders": [
+		{
+			"id": "45de16e6-c175-4cc3-be29-31d7beb964f7",
+			"name": "Course",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "4304b649-5a95-4457-923e-f7221ea92bb8",
+			"folder": null,
+			"order": [
+				"0003aa11-87ae-4266-a1e1-5fdcf1ed8737",
+				"612dd535-e2aa-4b00-bc3d-7b39d764b4a7",
+				"e98090c5-0823-46b7-aaa7-61258056dbe5",
+				"be6225c3-6326-414f-a339-95813d78d87e",
+				"28b2b4b5-1102-440d-b9a5-b5bb87b90b30"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "1e9605b4-4554-4f00-8be5-78a9dd5a7621",
+			"name": "Subject",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "4304b649-5a95-4457-923e-f7221ea92bb8",
+			"folder": null,
+			"order": [
+				"bcf290c6-9180-4596-8de5-0ff432aba741",
+				"94d95ba2-a845-49be-90ac-d89bbb236ff0",
+				"b675f7e9-78a4-48c4-ace4-20fb46f0589a",
+				"d05d11b1-16d5-4747-bd17-d829f6608fa2",
+				"049fb7f3-7a21-4b14-bb1a-cbfe331014fa"
+			],
+			"folders_order": []
+		},
+		{
+			"id": "ea98a069-a5d0-457b-9933-d5cecbfdfbad",
+			"name": "Teacher",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"collection": "4304b649-5a95-4457-923e-f7221ea92bb8",
+			"folder": null,
+			"order": [
+				"688a2bbb-96b6-4e48-b8d1-ffad998dd172",
+				"ba15a0d9-1808-4a3b-bfcc-87eac4ae4d2b",
+				"5f607153-1628-48bc-a0bc-8826182212ba",
+				"1aa157a1-b672-44e7-b7ea-fc14b305abc2",
+				"97481198-d1ae-48a6-93e5-43514d7784cc"
+			],
+			"folders_order": []
+		}
+	],
+	"requests": [
+		{
+			"id": "0003aa11-87ae-4266-a1e1-5fdcf1ed8737",
+			"name": "Get All Courses",
+			"url": "localhost:3000/api/courses",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "45de16e6-c175-4cc3-be29-31d7beb964f7",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "049fb7f3-7a21-4b14-bb1a-cbfe331014fa",
+			"name": "Delete Subject",
+			"url": "localhost:3000/api/subjects/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "1e9605b4-4554-4f00-8be5-78a9dd5a7621",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "1aa157a1-b672-44e7-b7ea-fc14b305abc2",
+			"name": "Update Teacher",
+			"url": "localhost:3000/api/teachers/1",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ea98a069-a5d0-457b-9933-d5cecbfdfbad",
+			"rawModeData": "{\n\t\"name\" : \"name\",\n\t\"email\" : \"email\",\n\t\"subject\" : 0\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "28b2b4b5-1102-440d-b9a5-b5bb87b90b30",
+			"name": "Delete Course",
+			"url": "localhost:3000/api/courses/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "45de16e6-c175-4cc3-be29-31d7beb964f7",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "5f607153-1628-48bc-a0bc-8826182212ba",
+			"name": "Create Teacher",
+			"url": "localhost:3000/api/teachers",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ea98a069-a5d0-457b-9933-d5cecbfdfbad",
+			"rawModeData": "{\n\t\"name\" : \"name\",\n\t\"email\" : \"email\",\n\t\"subject\" : 0\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "612dd535-e2aa-4b00-bc3d-7b39d764b4a7",
+			"name": "Get Course By Id",
+			"url": "localhost:3000/api/courses/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "45de16e6-c175-4cc3-be29-31d7beb964f7",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "688a2bbb-96b6-4e48-b8d1-ffad998dd172",
+			"name": "Get All Teachers",
+			"url": "localhost:3000/api/teachers",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ea98a069-a5d0-457b-9933-d5cecbfdfbad",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "94d95ba2-a845-49be-90ac-d89bbb236ff0",
+			"name": "Get Subject By Id",
+			"url": "localhost:3000/api/subjects/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "1e9605b4-4554-4f00-8be5-78a9dd5a7621",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "97481198-d1ae-48a6-93e5-43514d7784cc",
+			"name": "Delete Teacher",
+			"url": "localhost:3000/api/teachers/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ea98a069-a5d0-457b-9933-d5cecbfdfbad",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "b675f7e9-78a4-48c4-ace4-20fb46f0589a",
+			"name": "Create Subject",
+			"url": "localhost:3000/api/subjects",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "1e9605b4-4554-4f00-8be5-78a9dd5a7621",
+			"rawModeData": "{\n\t\"name\" : \"Lab 6\",\n\t\"course\" : 2\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "ba15a0d9-1808-4a3b-bfcc-87eac4ae4d2b",
+			"name": "Get Teacher By Id",
+			"url": "localhost:3000/api/teachers/1",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "ea98a069-a5d0-457b-9933-d5cecbfdfbad",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "bcf290c6-9180-4596-8de5-0ff432aba741",
+			"name": "Get All Subjects",
+			"url": "localhost:3000/api/subjects",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "1e9605b4-4554-4f00-8be5-78a9dd5a7621",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "be6225c3-6326-414f-a339-95813d78d87e",
+			"name": "Update Course",
+			"url": "localhost:3000/api/courses/1",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "45de16e6-c175-4cc3-be29-31d7beb964f7",
+			"rawModeData": "{\n\t\"name\" : \"name\",\n\t\"period\" : 0\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "d05d11b1-16d5-4747-bd17-d829f6608fa2",
+			"name": "Update Subject",
+			"url": "localhost:3000/api/subjects/1",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "1e9605b4-4554-4f00-8be5-78a9dd5a7621",
+			"rawModeData": "{\n\t\"name\" : \"name\",\n\t\"course\" : 0\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "e98090c5-0823-46b7-aaa7-61258056dbe5",
+			"name": "Create Course",
+			"url": "localhost:3000/api/courses",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": "45de16e6-c175-4cc3-be29-31d7beb964f7",
+			"rawModeData": "{\n\t\"name\" : \"name\",\n\t\"period\" : 0\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		}
+	]
+}
