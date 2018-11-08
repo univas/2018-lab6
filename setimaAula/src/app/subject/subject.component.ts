@@ -24,7 +24,7 @@ export class SubjectComponent implements OnInit {
   filter : string;
 
   constructor(private subjectService : SubjectService, private courseService : CourseService) {
-    this.courses = this.courseService.getAll();
+    //this.courses = this.courseService.getAll();
     this.subjects = subjectService.getAll();
     this.subjectsFiltered = this.subjects;
     this.newSubject = new Subject();

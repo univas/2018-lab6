@@ -11,7 +11,7 @@ export class CourseComponent implements OnInit {
 
   newCourse : Course;
 
-  courses : Course[];
+  courses : Course[] = [];
 
   coursesFiltered : Course[];
 
@@ -20,8 +20,12 @@ export class CourseComponent implements OnInit {
   filter : string;
 
   constructor(private courseService : CourseService) {
-    this.courses = this.courseService.getAll();
-    this.coursesFiltered = this.courses;
+    this.courseService.getAll().subscribe(
+      result => {
+        this.courses = result
+        this.coursesFiltered = result
+      }
+    );
     this.newCourse = new Course();
   }
 
