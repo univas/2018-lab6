@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Course } from './course';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+const httpOption = {
+  headers : new HttpHeaders({"Content-Type" : "application/json"})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -18,17 +22,15 @@ export class CourseService {
     return this.http.get<Course[]>(this.courseAPI);
   }
 
-  save(course : Course) {
-    this.courses.push(course);
+  save(course : Course) : Observable<Course> {
+    return this.http.post<Course>(this.courseAPI, course, httpOption);
   }
 
-  update(course : Course) {
-    let oldCourse = this.courses.find( c => c.id === course.id);
-    oldCourse.name = course.name;
-    oldCourse.period = course.period;
+  update(course : Course) : Observable<Course> {
+    return this.http.put<Course>(this.courseAPI + '/' + course.id, course, httpOption);
   }
 
-  delete(course : Course) {
-    this.http.delete(this.courseAPI + '/' + course.id);
+  delete(course : Course) : Observable<Course> {
+    return this.http.delete<Course>(this.courseAPI + '/' + course.id);
   }
 }

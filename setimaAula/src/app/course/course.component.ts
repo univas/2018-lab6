@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../course';
 import { CourseService } from '../course.service';
+import { getAllDebugNodes } from '@angular/core/src/debug/debug_node';
 
 @Component({
   selector: 'app-course',
@@ -20,25 +21,33 @@ export class CourseComponent implements OnInit {
   filter : string;
 
   constructor(private courseService : CourseService) {
+    this.newCourse = new Course();
+    this.getAll();
+  }
+  
+  ngOnInit() {
+  }
+  
+  getAll() {
     this.courseService.getAll().subscribe(
       result => {
         this.courses = result
         this.coursesFiltered = result
       }
     );
-    this.newCourse = new Course();
-  }
-
-  ngOnInit() {
   }
 
   save() {
     if (this.isValidCourse()) {
       if (this.newCourse.id) {
-        this.courseService.update(this.newCourse);
+        this.courseService.update(this.newCourse).subscribe(
+          result => this.getAll()
+        );
+
       } else {
-        this.newCourse.id = (new Date()).getTime();
-        this.courseService.save(this.newCourse);
+        this.courseService.save(this.newCourse).subscribe(
+          result => this.getAll()
+        );
       }
       
       this.showError = false;
@@ -60,7 +69,9 @@ export class CourseComponent implements OnInit {
   }
 
   delete(subject : Course) {
-    this.courseService.delete(subject);
+    this.courseService.delete(subject).subscribe(
+      result => this.getAll()
+    );
   }
 
   search() {
