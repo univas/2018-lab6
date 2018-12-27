@@ -10,24 +10,22 @@ import { getAllDebugNodes } from '@angular/core/src/debug/debug_node';
 })
 export class CourseComponent implements OnInit {
 
-  newCourse : Course;
+  newCourse: Course;
 
-  courses : Course[] = [];
+  courses: Course[] = [];
 
-  coursesFiltered : Course[];
+  coursesFiltered: Course[];
 
-  showError : boolean = false;
+  filter: string;
 
-  filter : string;
-
-  constructor(private courseService : CourseService) {
+  constructor(private courseService: CourseService) {
     this.newCourse = new Course();
     this.getAll();
   }
-  
+
   ngOnInit() {
   }
-  
+
   getAll() {
     this.courseService.getAll().subscribe(
       result => {
@@ -38,37 +36,26 @@ export class CourseComponent implements OnInit {
   }
 
   save() {
-    if (this.isValidCourse()) {
-      if (this.newCourse.id) {
-        this.courseService.update(this.newCourse).subscribe(
-          result => this.getAll()
-        );
 
-      } else {
-        this.courseService.save(this.newCourse).subscribe(
-          result => this.getAll()
-        );
-      }
-      
-      this.showError = false;
-      this.newCourse = new Course();
+    if (this.newCourse.id) {
+      this.courseService.update(this.newCourse).subscribe(
+        result => this.getAll()
+      );
+
     } else {
-      this.showError = true;
+      this.courseService.save(this.newCourse).subscribe(
+        result => this.getAll()
+      );
     }
+
+    this.newCourse = new Course();
   }
 
-  isValidCourse() {
-    if (!this.newCourse.name || this.newCourse.name.trim() === '' || !this.newCourse.period) {
-      return false;
-    }
-    return true;
+  edit(subject: Course) {
+    this.newCourse = new Course(subject.id, subject.name, subject.workload);
   }
 
-  edit(subject : Course) {
-    this.newCourse = new Course(subject.id, subject.name, subject.period);
-  }
-
-  delete(subject : Course) {
+  delete(subject: Course) {
     this.courseService.delete(subject).subscribe(
       result => this.getAll()
     );
@@ -78,8 +65,8 @@ export class CourseComponent implements OnInit {
     if (this.filter && this.filter.trim() !== '') {
       let f = this.filter.toLowerCase();
 
-      this.courses = this.coursesFiltered.filter(item => 
-          item.name.toLowerCase().startsWith(f) || item.period.toString().toLowerCase().startsWith(f)
+      this.courses = this.coursesFiltered.filter(item =>
+        item.name.toLowerCase().startsWith(f) || item.workload.toString().toLowerCase().startsWith(f)
       );
     } else {
       this.courses = this.coursesFiltered;

@@ -4,12 +4,12 @@ export class Course {
 
     name : string;
 
-    period : number;
+    workload : number;
 
-    constructor(id?: number, name?: string, period?: number) {
+    constructor(id?: number, name?: string, workload?: number) {
         this.id = id;
         this.name = name;
-        this.period = period;
+        this.workload = workload;
     }
 
 }

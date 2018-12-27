@@ -13,55 +13,55 @@ export class SubjectComponent implements OnInit {
 
   courses : Course[];
 
-  subjects : Subject[];
+  subjects : Subject[] = [];
 
   subjectsFiltered : Subject[];
 
   newSubject : Subject;
 
-  showError : boolean = false;
-
   filter : string;
 
   constructor(private subjectService : SubjectService, private courseService : CourseService) {
-    //this.courses = this.courseService.getAll();
-    this.subjects = subjectService.getAll();
-    this.subjectsFiltered = this.subjects;
+    this.courseService.getAll().subscribe(
+      result => {
+        this.courses = result;
+        this.getAll();
+      }
+    );
     this.newSubject = new Subject();
   }
 
   ngOnInit(): void {
   }
 
-  save() {
-    if (this.isValidSubject()) {
-      if (this.newSubject.id) {
-        this.subjectService.update(this.newSubject);
-      } else {
-        this.newSubject.id = (new Date()).getTime();
-        this.subjectService.save(this.newSubject);
+  getAll() {
+    this.subjectService.getAll().subscribe(
+      result => {
+        result.forEach(element => {
+          element.course = this.courses.find(e => e.id == element.course_fk)
+        });
+        this.subjects = result;
+        this.subjectsFiltered = result
       }
-      
-      this.showError = false;
-      this.newSubject = new Subject();
-    } else {
-      this.showError = true;
-    }
+    );
   }
 
-  isValidSubject() {
-    if (!this.newSubject.name || this.newSubject.name.trim() === '' || !this.newSubject.course) {
-      return false;
+  save() {
+    if (this.newSubject.id) {
+      this.subjectService.update(this.newSubject).subscribe(r => this.getAll());
+    } else {
+      this.subjectService.save(this.newSubject).subscribe(r => this.getAll());
     }
-    return true;
+    
+    this.newSubject = new Subject();
   }
 
   edit(subject : Subject) {
-    this.newSubject = new Subject(subject.id, subject.name, subject.course);
+    this.newSubject = new Subject(subject.id, subject.name, subject.period, subject.workload, subject.course);
   }
 
   delete(subject : Subject) {
-    this.subjectService.delete(subject);
+    this.subjectService.delete(subject).subscribe(res => this.getAll());
   }
 
   search() {

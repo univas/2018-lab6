@@ -12,9 +12,8 @@ const httpOption = {
 })
 export class CourseService {
 
-  private courseAPI = "http://localhost:3000/api/courses";
-
-  private courses : Course[] = [];
+  private courseAPI = "https://pacific-wave-50441.herokuapp.com/api/courses";
+  //private courseAPI = "http://localhost:3000/api/courses";
 
   constructor(private http : HttpClient) { }
 

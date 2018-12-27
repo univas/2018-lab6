@@ -1,43 +1,92 @@
-<h1>Cadastro de disciplina</h1>
+<h1 class="text-center">Cadastro de Disciplina</h1>
 
-<div>
-  Nome: <input type="text" [(ngModel)]="newSubject.name">
-</div>
-
-<div>
-    Curso:
-    <select [(ngModel)]="newSubject.course">
-      <option *ngFor="let course of courses" [ngValue]="course">
-        {{ course.name }}
-      </option>
-    </select>
+<form #subjectForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">Nome</label>
+      <input type="text" [(ngModel)]="newSubject.name" #name="ngModel" class="form-control" id="name" name="name" placeholder="Nome"
+        required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="workload">Carga Horária</label>
+      <input type="number" [(ngModel)]="newSubject.workload" #workload="ngModel" class="form-control" id="workload" name="workload" placeholder="Carga Horária"
+        required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="period">Período</label>
+      <input type="number" [(ngModel)]="newSubject.period" #period="ngModel" class="form-control" id="period" name="period" placeholder="Período"
+        required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="course">Curso</label>
+      <select class="custom-select" [(ngModel)]="newSubject.course" #course="ngModel" id="course" name="course" required>
+        <option *ngFor="let course of courses" [ngValue]="course">
+          {{ course.name }}
+        </option>
+      </select>
+    </div>
   </div>
-  
 
-<p *ngIf="showError" class="error">Preencha todos os campos!</p>
+  <div *ngIf="name.invalid && name.dirty" class="alert alert-danger">
+    <div *ngIf="name.errors.required">
+      Campo "Nome" é obrigatório
+    </div>
+  </div>
+  <div *ngIf="workload.invalid && workload.dirty" class="alert alert-danger">
+    <div *ngIf="workload.errors.required">
+      Campo "Carga Horária" é obrigatório
+    </div>
+  </div>
+  <div *ngIf="period.invalid && period.dirty" class="alert alert-danger">
+    <div *ngIf="period.errors.required">
+      Campo "Período" é obrigatório
+    </div>
+  </div>
+  <div *ngIf="course.invalid && course.dirty" class="alert alert-danger">
+    <div *ngIf="course.errors.required">
+      Campo "Curso" é obrigatório
+    </div>
+  </div>
 
-<input type="button" value="Salvar" (click)="save()">
+  <button type="button" (click)="save()" [disabled]="!subjectForm.valid" class="btn btn-primary">
+    Salvar
+  </button>
+</form>
 
-<div *ngIf="subjects.length > 0">
-  <h2>Disciplinas salvas:</h2>
-  
-  <label>Busca:</label><input type="text" [(ngModel)]="filter">
-  <input type="button" value="Buscar" (click)="search()">
+<div>
+  <h2 class="text-center">Disciplinas cadastradas</h2>
 
-  <table>
+  <form class="form-inline float-right">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="filter" class="sr-onlsy">Buscar:</label>
+      <input type="text" class="form-control" id="filter" name="filter" [(ngModel)]="filter">
+    </div>
+    <button type="submit" (click)="search()" class="btn btn-primary mb-2">Filtrar</button>
+  </form>
+
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Nome</th>
+        <th>Carga Horária</th>
+        <th>Período</th>
         <th>Curso</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="subjects.length == 0">
+        <td colspan="4">Nenhuma disciplina encontrada!</td>
+      </tr>
       <tr *ngFor="let subject of subjects">
         <td>{{ subject.name }}</td>
+        <td>{{ subject.workload }}</td>
+        <td>{{ subject.period }}</td>
         <td>{{ subject.course.name }}</td>
         <td><input type="button" value="Editar" (click)="edit(subject)"></td>
         <td><input type="button" value="Excluir" (click)="delete(subject)"></td>
       </tr>
-    </thead>
+    </tbody>
   </table>
 </div>

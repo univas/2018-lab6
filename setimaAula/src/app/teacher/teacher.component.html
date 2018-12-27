@@ -1,48 +1,66 @@
-<h1>Cadastro de professor</h1>
+<h1 class="text-center">Cadastro de Professor</h1>
+
+<form #teacherForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">Nome</label>
+      <input type="text" [(ngModel)]="newTeacher.name" #name="ngModel" class="form-control" id="name" name="name" placeholder="Nome"
+        required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="email">E-mail</label>
+      <input type="text" [(ngModel)]="newTeacher.email" #email="ngModel" class="form-control" id="email" name="email" placeholder="E-mail"
+        required>
+    </div>
+  </div>
+
+  <div *ngIf="name.invalid && name.dirty" class="alert alert-danger">
+    <div *ngIf="name.errors.required">
+      Campo "Nome" é obrigatório
+    </div>
+  </div>
+
+  <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
+    <div *ngIf="email.errors.required">
+      Campo "E-mail" é obrigatório
+    </div>
+  </div>
+
+  <button type="button" (click)="save()" [disabled]="!teacherForm.valid" class="btn btn-primary">
+    Salvar
+  </button>
+</form>
 
 <div>
-  Nome: <input type="text" [(ngModel)]="newTeacher.name">
-</div>
+  <h2 class="text-center">Professores salvos:</h2>
 
-<div>
-  E-mail: <input type="text" [(ngModel)]="newTeacher.email">
-</div>
+  <form class="form-inline float-right">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="filter" class="sr-onlsy">Buscar:</label>
+      <input type="text" class="form-control" id="filter" name="filter" [(ngModel)]="filter">
+    </div>
+    <button type="submit" (click)="search()" class="btn btn-primary mb-2">Filtrar</button>
+  </form>
 
-<div>
-  Disciplina:
-  <select [(ngModel)]="newTeacher.subject">
-    <option *ngFor="let sub of subjects" [ngValue]="sub">
-      {{ sub.name }}
-    </option>
-  </select>
-</div>
-
-<p *ngIf="showError" class="error">Preencha todos os campos!</p>
-
-<input type="button" value="Salvar" (click)="save()">
-
-<div *ngIf="teachers.length > 0">
-  <h2>Professores salvos:</h2>
-  
-  <label>Busca:</label><input type="text" [(ngModel)]="filter">
-  <input type="button" value="Buscar" (click)="search()">
-  
-  <table>
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Nome</th>
         <th>E-mail</th>
-        <th>Disciplina</th>
         <th>Editar</th>
         <th>Excluir</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="teachers.length == 0">
+        <td colspan="5">Nenhum professor encontrado!</td>
       </tr>
       <tr *ngFor="let teacher of teachers">
         <td>{{ teacher.name }}</td>
         <td>{{ teacher.email }}</td>
-        <td>{{ teacher.subject.name }}</td>
         <td><input type="button" value="Editar" (click)="edit(teacher)"></td>
         <td><input type="button" value="Excluir" (click)="delete(teacher)"></td>
       </tr>
-    </thead>
+    </tbody>
   </table>
 </div>

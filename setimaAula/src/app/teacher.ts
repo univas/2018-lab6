@@ -8,13 +8,10 @@ export class Teacher {
 
     email : string;
 
-    subject : Subject;
-
-    constructor(id?: number, name?: string, email?: string, subject?: Subject) {
+    constructor(id?: number, name?: string, email?: string) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.subject = subject;
     }
 
 }

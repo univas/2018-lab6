@@ -1,9 +1,15 @@
-<h1>Welcome to Univas</h1>
+<nav class="navbar navbar-dark bg-success mb-5">
+  <a class="navbar-brand" href="/">Univas</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="course">Curso</a>
+      <a class="nav-item nav-link" routerLink="subject">Disciplina</a>
+      <a class="nav-item nav-link" routerLink="teacher">Professor</a>
+      <a class="nav-item nav-link" routerLink="class">Aula</a>
+    </div>
+  </div>
+</nav>
 
-<ul>
-  <li><a routerLink="course">Cadastro de Curso</a></li>
-  <li><a routerLink="subject">Cadastro de Disciplina</a></li>
-  <li><a routerLink="teacher">Cadastro de Professor</a></li>
-</ul>
-
-<router-outlet> </router-outlet>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

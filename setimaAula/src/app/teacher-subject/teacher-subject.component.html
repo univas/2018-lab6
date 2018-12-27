@@ -1,17 +1,25 @@
-<h1 class="text-center">Cadastro de Curso</h1>
+<h1 class="text-center">Cadastro de Aulas</h1>
 
 <form #courseForm="ngForm">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="name">Nome</label>
-      <input type="text" [(ngModel)]="newCourse.name" #name="ngModel" class="form-control" id="name" name="name" placeholder="Nome"
-        required>
+      <label for="teacher">Professor</label>
+      <select class="custom-select" [(ngModel)]="newSubject.teacher" #teacher="ngModel" id="teacher" name="teacher" required>
+        <option *ngFor="let teacher of teachers" [ngValue]="teacher">
+          {{ teacher.name }}
+        </option>
+      </select>
     </div>
+
     <div class="form-group col-md-6">
-      <label for="workload">Carga Horária</label>
-      <input type="number" [(ngModel)]="newCourse.workload" #workload="ngModel" class="form-control" id="workload" name="workload" placeholder="Carga Horária"
-        required>
+      <label for="course">Disciplina</label>
+      <select class="custom-select" [(ngModel)]="newSubject.course" #course="ngModel" id="course" name="course" required>
+        <option *ngFor="let course of courses" [ngValue]="course">
+          {{ course.name }}
+        </option>
+      </select>
     </div>
+
   </div>
 
   <div *ngIf="name.invalid && name.dirty" class="alert alert-danger">

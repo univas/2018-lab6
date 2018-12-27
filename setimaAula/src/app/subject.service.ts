@@ -1,31 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Subject } from './subject';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const httpOption = {
+  headers : new HttpHeaders({"Content-Type" : "application/json"})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubjectService {
 
-  private subjects : Subject[] = [];
+  private subjectAPI = "https://pacific-wave-50441.herokuapp.com/api/subjects";
+  //private subjectAPI = "http://localhost:3000/api/subjects";
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
 
-  getAll() {
-    return this.subjects;
+  getAll() : Observable<Subject[]> {
+    return this.http.get<Subject[]>(this.subjectAPI);
+
   }
 
-  save(subject : Subject) {
-    this.subjects.push(subject);
+  save(subject : Subject) : Observable<Subject> {
+    return this.http.post<Subject>(this.subjectAPI, subject, httpOption);
   }
 
-  update(subject : Subject) {
-    let oldSubject = this.subjects.find( sub => sub.id === subject.id);
-    oldSubject.name = subject.name;
-    oldSubject.course = subject.course;
+  update(subject : Subject) : Observable<Subject> {
+    return this.http.put<Subject>(this.subjectAPI + '/' + subject.id, subject, httpOption);
   }
 
-  delete(subject : Subject) {
-    let index = this.subjects.indexOf(subject);
-    this.subjects.splice(index, 1);
+  delete(subject : Subject) : Observable<Subject> {
+    return this.http.delete<Subject>(this.subjectAPI + '/' + subject.id);
   }
 }

@@ -1,33 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Teacher } from './teacher';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const httpOption = {
+  headers : new HttpHeaders({"Content-Type" : "application/json"})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeacherService {
 
-  private teachers : Teacher[] = [];
+  private teacherAPI = "https://pacific-wave-50441.herokuapp.com/api/teachers";
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
 
-  getAll() {
-    return this.teachers;
+  getAll() : Observable<Teacher[]> {
+    return this.http.get<Teacher[]>(this.teacherAPI);
   }
 
-  save(teacher : Teacher) {
-    this.teachers.push(teacher);
+  save(teacher : Teacher) : Observable<Teacher> {
+    return this.http.post<Teacher>(this.teacherAPI, teacher, httpOption);
   }
 
-  update(teacher : Teacher) {
-    let oldTeacher = this.teachers.find(tea => tea.id === teacher.id);
-    oldTeacher.name = teacher.name;
-    oldTeacher.email = teacher.email;
-    oldTeacher.subject = teacher.subject;
+  update(teacher : Teacher) : Observable<Teacher> {
+    return this.http.put<Teacher>(this.teacherAPI + '/' + teacher.id, teacher, httpOption);
   }
 
-  delete(teacher : Teacher) {
-    let index = this.teachers.indexOf(teacher);
-    this.teachers.splice(index, 1);
+  delete(teacher : Teacher) : Observable<Teacher> {
+    return this.http.delete<Teacher>(this.teacherAPI + '/' + teacher.id);
   }
 
 }

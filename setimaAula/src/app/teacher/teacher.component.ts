@@ -11,11 +11,9 @@ import { Subject } from '../subject';
 })
 export class TeacherComponent implements OnInit {
 
-  teachers : Teacher[];
+  teachers : Teacher[] = [];
 
   teachersFiltered : Teacher[];
-
-  subjects : Subject[];
 
   newTeacher : Teacher;
 
@@ -23,24 +21,33 @@ export class TeacherComponent implements OnInit {
 
   filter : string;
 
-  constructor(private teacherService : TeacherService,
-              private subjectService : SubjectService) {
-    this.subjects = subjectService.getAll();
-    this.teachers = teacherService.getAll();
-    this.teachersFiltered = this.teachers;
+  constructor(private teacherService : TeacherService) {
+    this.getAll();
     this.newTeacher = new Teacher();
   }
 
   ngOnInit(): void {
   }
 
+  getAll() {
+    this.teacherService.getAll().subscribe(
+      result => {
+        this.teachers = result;
+        this.teachersFiltered = result
+      }
+    );
+  }
+
   save() {
     if (this.isValidTeacher()) {
       if (this.newTeacher.id) {
-        this.teacherService.update(this.newTeacher);
+        this.teacherService.update(this.newTeacher).subscribe(
+          res => this.getAll()
+        );
       } else {
-        this.newTeacher.id = (new Date()).getTime();
-        this.teacherService.save(this.newTeacher);
+        this.teacherService.save(this.newTeacher).subscribe(
+          res => this.getAll()
+        );
       }
       
       this.newTeacher = new Teacher();
@@ -59,12 +66,13 @@ export class TeacherComponent implements OnInit {
   }
 
   edit(teacher : Teacher) {
-    this.newTeacher = new Teacher(teacher.id, teacher.name, 
-        teacher.email, teacher.subject);
+    this.newTeacher = new Teacher(teacher.id, teacher.name, teacher.email);
   }
 
   delete(teacher : Teacher) {
-    this.teacherService.delete(teacher);
+    this.teacherService.delete(teacher).subscribe(
+      res => this.getAll()
+    );
   }
 
   search() {
@@ -73,7 +81,6 @@ export class TeacherComponent implements OnInit {
 
       this.teachers = this.teachersFiltered.filter(item => 
           item.name.toLowerCase().startsWith(f) || item.email.toLowerCase().startsWith(f)
-          || item.subject.name.toLowerCase().startsWith(f)
       );
     } else {
       this.teachers = this.teachersFiltered;
